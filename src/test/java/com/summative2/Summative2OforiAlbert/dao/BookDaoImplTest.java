@@ -43,20 +43,7 @@ public class BookDaoImplTest {
 
     @Before
     public void setUp() throws Exception{
-        List<Book> booksToDelete = bookDao.getAllBooks();
-
-        booksToDelete.forEach(
-                book -> bookDao.deleteBook(book.getBookId()));
-
-        List<Author> authorsToDelete = authorDao.getAllAuthors();
-
-        authorsToDelete.forEach(
-                author -> authorDao.deleteAuthor(author.getAuthorId()));
-
-        List<Publisher> publishersToDelete = publisherDao.getAllPublishers();
-
-        publishersToDelete.forEach(
-                publisher -> publisherDao.deletePublisher(publisher.getPublisherId()));
+        clearTables();
 
         author1 = new Author();
         author1.setFirstName("Stephen");
@@ -113,6 +100,10 @@ public class BookDaoImplTest {
 
     @After
     public void tearDown() {
+       clearTables();
+    }
+
+    private void clearTables() {
         List<Book> booksToDelete = bookDao.getAllBooks();
 
         booksToDelete.forEach(

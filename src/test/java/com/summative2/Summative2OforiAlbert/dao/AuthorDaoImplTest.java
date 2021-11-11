@@ -26,6 +26,8 @@ public class AuthorDaoImplTest {
 
     @Before
     public void setUp() throws Exception {
+        clearTable();
+
         author1 = new Author();
         author1.setFirstName("Stephen");
         author1.setLastName("King");
@@ -49,6 +51,10 @@ public class AuthorDaoImplTest {
 
     @After
     public void tearDown() {
+        clearTable();
+    }
+
+    private void clearTable() {
         List<Author> authorsToDelete = authorDao.getAllAuthors();
 
         authorsToDelete.forEach(

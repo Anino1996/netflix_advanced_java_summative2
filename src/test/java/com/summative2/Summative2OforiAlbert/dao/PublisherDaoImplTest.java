@@ -31,10 +31,7 @@ public class PublisherDaoImplTest {
 
     @Before
     public void setUp() throws Exception {
-        List<Publisher> publishersToDelete = publisherDao.getAllPublishers();
-
-        publishersToDelete.forEach(
-                publisher -> publisherDao.deletePublisher(publisher.getPublisherId()));
+        clearTable();
 
         publisher1 = new Publisher();
         publisher1.setName("O'reilly");
@@ -46,7 +43,7 @@ public class PublisherDaoImplTest {
         publisher1.setEmail("oreilly@oreilly.com");
 
         publisher2 = new Publisher();
-        publisher2.setName("O'reilly");
+        publisher2.setName("Manning");
         publisher2.setPostalCode("09688");
         publisher2.setStreet("West ave");
         publisher2.setState("WA");
@@ -58,6 +55,10 @@ public class PublisherDaoImplTest {
 
     @After
     public void tearDown(){
+        clearTable();
+    }
+
+    private void clearTable() {
         List<Publisher> publishersToDelete = publisherDao.getAllPublishers();
 
         publishersToDelete.forEach(
